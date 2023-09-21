@@ -1,7 +1,8 @@
-import { ethers } from "hardhat";
+import { ethers } from "ethers";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { BrowserProvider, Contract, ContractFactory } from "ethers";
+import { abi, bytecode } from "./contract/chai.json";
 
 const App = () => {
   const [contractInstance, setContractInstance] = useState({
@@ -14,8 +15,9 @@ const App = () => {
 
   useEffect(() => {
     const contractData = async () => {
-      const contractAddress = "";
-      const contractAbi = "";
+      const contractAddress = "0x6711180B5bE10e2BCf2eA27F5f15bEf2dd55b38a";
+      const contractAbi = abi;
+      const contractByteCode = bytecode;
 
       /* Metamask */
       if (typeof window.ethereum !== "undefined") {
@@ -27,8 +29,12 @@ const App = () => {
           const provider = new ethers.BrowserProvider(window.ethereum); // read the blockchain
           const signer = provider.getSigner(); // write to the blockchain
 
-          const contract = new Contract(contractAddress, contractAbi, signer); // create a new contract
-
+          const contract = new ethers.ContractFactory(
+            contractAbi,
+            contractByteCode,
+            signer
+          ); // create a new contract
+          console.log(contract);
           setContractInstance({ provider, signer, contract });
         } catch (error) {
           console.log(error);
