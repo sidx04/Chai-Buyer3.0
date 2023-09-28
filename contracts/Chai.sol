@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.19;
 
 contract Chai {
     struct Memo {
         string name;
         string message;
-        uint256 timestamp;
+        uint timestamp;
         address from;
     }
 

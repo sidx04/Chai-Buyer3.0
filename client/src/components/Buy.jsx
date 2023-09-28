@@ -12,7 +12,8 @@ const Buy = ({ contractInstance }) => {
     const amount = { value: ethers.parseEther("0.001") };
     const txResponse = await contract.buyChai(name, message, amount);
     await txResponse.wait();
-    console.log("Transaction is successful...");
+    alert("Transaction is successful...");
+    window.location.reload();
   };
   return (
     <>
